@@ -1,0 +1,56 @@
+name: Bug Report
+description: File a bug report
+title: "bug: "
+labels: ["bug", "flask"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report! Please provide the following information to help us understand and resolve the issue:
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the issue you encountered and the expected behavior.
+      placeholder: |
+        I clicked the "Submit" button on the form, but the data was not saved correctly. I expected the form data to be stored in the database.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide the steps to reproduce the issue.
+      placeholder: |
+        1. Go to '/'
+        2. Click on '...'
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Provide details about your development environment (e.g., operating system, Flask version, Python version, etc.).
+      placeholder: |
+        - Operating System: Windows 10
+        - Flask Version: 2.1.0
+        - Python Version: 3.9.2
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Log Output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Provide any additional information or context that might be helpful in resolving the issue.

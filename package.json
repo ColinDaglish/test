@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ons/design-system": "^72.1.1",
+    "normalize.css": "^8.0.1"
+  }
+}

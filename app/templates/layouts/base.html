@@ -1,0 +1,72 @@
+<!-- Tweaked ONS frontend base template - https://service-manual.ons.gov.uk/design-system/foundations/base-page-template -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% block pageTitle %}
+      <title>Example: Default base page template</title>
+    {% endblock pageTitle %}
+    <link rel="stylesheet"
+          href="https://cdn.ons.gov.uk/sdc/design-system/72.0.1/css/main.css" />
+    <link rel="stylesheet"
+          media="print"
+          href="https://cdn.ons.gov.uk/sdc/design-system/72.0.1/css/print.css" />
+    <meta name="theme-color" content="#206095" />
+    {% include "partials/social.html" %}
+    {% include "partials/flavicons.html" %}
+  </head>
+  <body>
+    <!-- prettier-ignore-start -->
+    <script>
+      document.body.className = ((document.body.className) ? document.body.className + ' ons-js-enabled' :
+        'ons-js-enabled');
+    </script>
+    <!-- prettier-ignore-end -->
+    <div class="ons-page">
+      <div class="ons-page__content">
+        <a class="ons-skip-to-content" href="#main-content">Skip to main content</a>
+        {% include "partials/header.html" %}
+        <div class="ons-page__container ons-container">
+          <div class="ons-grid">
+            <div class="ons-grid__col ons-col-12@m ">
+              {% block main %}
+                <main id="main-content" class="ons-page__main ">
+                  {% block content %}
+                  {% endblock content %}
+                </main>
+              {% endblock main %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "partials/footer.html" %}
+    <!-- prettier-ignore-start -->
+    <script>
+      (function() {
+        var s = ['https://cdn.ons.gov.uk/sdc/design-system/72.0.1/scripts/main.js'],
+          c = document.createElement('script');
+        if (!('noModule' in c)) {
+          for (var i = 0; i < s.length; i++) {
+            s[i] = s[i].replace('.js', '.es5.js');
+          }
+        }
+        for (var i = 0; i < s.length; i++) {
+          var e = document.createElement('script');
+          e.src = s[i];
+          document.body.appendChild(e);
+        }
+      })();
+    </script>
+    <!-- prettier-ignore-end -->
+    <div class="embeddable"></div>
+    <style>
+      body {
+        height: auto;
+      }
+    </style>
+    <script src="https://cdn.ons.gov.uk/sdc/design-system/72.0.1/js/main.js?t=1732268687213"></script>
+  </body>
+</html>

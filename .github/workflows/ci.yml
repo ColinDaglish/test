@@ -1,0 +1,76 @@
+name: Test and lint
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  run-tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: "3.12"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run test cases
+        run: make test
+
+  code-quality:
+    name: Check code quality
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: "3.12"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Python linter
+        run: make lint
+
+      - name: Run Python formatter check
+        run: make format-check
+
+      - name: Run HTML formatter
+        run: make format-html
+
+      - name: Run HTML formatter check
+        run: make check-html
